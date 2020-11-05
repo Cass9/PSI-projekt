@@ -41,4 +41,9 @@ zadanie3("Mamma mia", 'a')
 def przeliczanie(temp, temp_type):
     if temp_type == "fahrenheit" :
         temp = (temp * 9/5) + 32
-    
+    elif temp_type == "kelvin":
+        temp = temp + 273.15
+    print(temp, temp_type)
+
+przeliczanie(20, "fahrenheit")
+
