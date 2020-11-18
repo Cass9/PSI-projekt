@@ -1,1 +1,1 @@
-
+# Model bazy danych
