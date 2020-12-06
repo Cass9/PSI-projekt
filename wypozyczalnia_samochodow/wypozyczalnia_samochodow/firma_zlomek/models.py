@@ -69,7 +69,7 @@ class Wypozyczenia(models.Model):
 
 class Zwroty(models.Model):    
     wypozyczenia_id_wypozyczenia = models.ForeignKey(Wypozyczenia, on_delete=models.SET_NULL, null=True)
-    stan_licznika_po = models.Big.IntegerField(max_length=3, null=False)
+    stan_licznika_po = models.IntegerField(max_length=3, null=False)
     data_zwrotu = models.DateField()
 
     def __str__(self):
