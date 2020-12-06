@@ -20,7 +20,7 @@ class Przeglad(models.Model):
     auto_id_auta = models.ForeignKey(Auto, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"Początek: {self.Data_poczatku_przegladu} koniec: {self.Data_konca_przegladu} przeglądu samochodu {self.auto_id_auta}"
+        return f"{self.auto_id_auta}, koniec ważności przeglądu dnia: {self.Data_konca_przegladu}"
     
 
 class Ubezpieczenie(models.Model):
@@ -30,6 +30,10 @@ class Ubezpieczenie(models.Model):
     numer_ubezpieczenia = models.IntegerField(max_length=20, null=False)
     Ubezpieczyciel = models.CharField(max_length=75, null=False)
     cena_ubezpieczenia = models.FloatField(max_length=5, null=False)
+
+    def __str__(self):
+        return f"{self.auto_id_auta}, koniec ważności ubezpieczenia dnia: {self.Data_konca_ubezpieczenia}"
+    
 
 class Klient(models.Model):
     Imie = models.CharField(max_length=75, null=False)
