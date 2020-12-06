@@ -10,6 +10,7 @@ class Auto(models.Model):
     moc_silnika = models.CharField(max_length=15, null=True)
     zdjecie = models.TextField(blank=True)
     przebieg = models.IntegerField(max_length=9, null=False)
+    
     def __str__(self):
         return self.Marka + ' ' + self.Model + ' ' + self.numer_rejestracyjny
     
