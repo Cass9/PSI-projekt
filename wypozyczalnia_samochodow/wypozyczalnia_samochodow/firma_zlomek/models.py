@@ -8,7 +8,6 @@ class Auto(models.Model):
     Rok_produkcji= models.DateField()
     numer_rejestracyjny = models.CharField(max_length=75, null=False)
     moc_silnika = models.CharField(max_length=15, null=True)
-    zdjecie = models.TextField(blank=True)
     przebieg = models.IntegerField(max_length=9, null=False)
     
     def __str__(self):
@@ -74,5 +73,5 @@ class Zwroty(models.Model):
     data_zwrotu = models.DateField()
 
     def __str__(self):
-        return self.wypozyczenia_id_wypozyczenia
+        return str(self.wypozyczenia_id_wypozyczenia)
     
