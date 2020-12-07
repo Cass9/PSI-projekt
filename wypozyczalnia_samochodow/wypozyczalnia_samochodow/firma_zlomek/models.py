@@ -8,7 +8,7 @@ class Auto(models.Model):
     Rok_produkcji= models.DateField()
     numer_rejestracyjny = models.CharField(max_length=75, null=False)
     moc_silnika = models.CharField(max_length=15, null=True)
-    przebieg = models.BigIntegerField(max_length=9, null=False)
+    przebieg = models.FloatField(max_length=9, null=False)
     
     def __str__(self):
         return self.Marka + ' ' + self.Model + ' ' + self.numer_rejestracyjny
@@ -27,7 +27,7 @@ class Ubezpieczenie(models.Model):
     auto_id_auta = models.ForeignKey(Auto, on_delete=models.SET_NULL, null=True)
     Data_konca_ubezpieczenia = models.DateField()
     Data_poczatku_ubezpieczenia = models.DateField()
-    numer_ubezpieczenia = models.BigIntegerField(max_length=20, null=False)
+    numer_ubezpieczenia = models.FloatField(max_length=20, null=False)
     Ubezpieczyciel = models.CharField(max_length=75, null=False)
     cena_ubezpieczenia = models.FloatField(max_length=5, null=False)
 
@@ -38,12 +38,12 @@ class Ubezpieczenie(models.Model):
 class Klient(models.Model):
     Imie = models.CharField(max_length=75, null=False)
     Nazwisko = models.CharField(max_length=75, null=False)
-    PESEL = models.BigIntegerField(max_length=11, null=False)
-    numer_dowodu_osobistego = models.IntegerField(max_length=8, null=False)
+    PESEL = models.FloatField(max_length=11, null=False)
+    numer_dowodu_osobistego = models.FloatField(max_length=8, null=False)
     Miejscowosc = models.CharField(max_length=75, null=False)
     Ulica = models.CharField(max_length=75, null=True)
-    Numer_domu = models.IntegerField(max_length=3, null=True)
-    Numer_mieszkania = models.IntegerField(max_length=3, null=True)
+    Numer_domu = models.FloatField(max_length=3, null=True)
+    Numer_mieszkania = models.FloatField(max_length=3, null=True)
 
     def __str__(self):
         return self.Imie + ' ' + self.Nazwisko
@@ -69,7 +69,7 @@ class Wypozyczenia(models.Model):
 
 class Zwroty(models.Model):    
     wypozyczenia_id_wypozyczenia = models.ForeignKey(Wypozyczenia, on_delete=models.SET_NULL, null=True)
-    stan_licznika_po = models.IntegerField(max_length=3, null=False)
+    stan_licznika_po = models.FloatField(max_length=3, null=False)
     data_zwrotu = models.DateField()
 
     def __str__(self):
