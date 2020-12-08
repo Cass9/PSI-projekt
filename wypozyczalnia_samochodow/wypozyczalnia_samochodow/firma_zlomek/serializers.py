@@ -10,12 +10,25 @@ class AutoSerializer(serializers.ModelSerializer):
 class PrzegladSerializer(serializers.ModelSerializer):
     class Meta:
         model = Przeglad
-        fields = '__all__'
+        fields = [
+            'Data_poczatku_przegladu', 
+            'Data_konca_przegladu', 
+            'auto_id_auta'
+        ]
+        depth = 1
 
 class UbezpieczenieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ubezpieczenie
-        fields = '__all__'
+        fields = [
+            'auto_id_auta',
+            'Data_konca_ubezpieczenia',
+            'Data_poczatku_ubezpieczenia',
+            'numer_ubezpieczenia',
+            'Ubezpieczyciel',
+            'cena_ubezpieczenia'
+        ]
+        depth = 1
 
 class KlientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,11 +43,23 @@ class CennikSerializer(serializers.ModelSerializer):
 class WypozyczeniaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wypozyczenia
-        fields = '__all__'
+        fields = [
+            'klient_id_klienta',
+            'auto_id_auta',
+            'data_wypozyczenia',
+            'termin_zwrotu_zwrotu',
+            'cennik_id_cennika'
+        ]
+        depth = 1
 
 class ZwrotySerialiser(serializers.ModelSerializer):
     class Meta:
         model = Zwroty
-        fields = '__all__'
+        fields = [
+            'wypozyczenia_id_wypozyczenia',
+            'stan_licznika_po',
+            'data_zwrotu'
+        ]
+        depth = 1
 
 
