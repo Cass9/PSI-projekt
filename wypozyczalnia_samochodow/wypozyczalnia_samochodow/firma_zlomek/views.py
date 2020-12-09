@@ -1,21 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .serializers import AutoSerializer
-from .serializers import KlientSerializer
-from .serializers import PrzegladSerializer
-from .serializers import UbezpieczenieSerializer
-from .serializers import CennikSerializer
-from .serializers import WypozyczeniaSerializer
-from .serializers import ZwrotySerialiser
+from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser
 from rest_framework import generics
 from rest_framework.reverse import reverse
-from .models import Auto
-from .models import Klient
-from .models import Przeglad
-from .models import Ubezpieczenie
-from .models import Cennik
-from .models import Wypozyczenia
-from .models import Zwroty
+from .models import Auto, Klient, Przeglad, Ubezpieczenie, Cennik, Wypozyczenia, Zwroty
 from rest_framework.response import Response
 
 
