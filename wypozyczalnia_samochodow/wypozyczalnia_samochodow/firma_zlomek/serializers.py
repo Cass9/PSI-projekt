@@ -5,7 +5,17 @@ from .models import Auto, Przeglad, Ubezpieczenie, Klient, Cennik, Wypozyczenia,
 class AutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Auto
-        fields = '__all__'
+        fields = [    
+            'Marka',
+            'Model',
+            'Rok_produkcji',
+            'numer_rejestracyjny',
+            'moc_silnika',
+            'przebieg',
+            'url'
+        ]
+      
+        
 
 class PrzegladSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,7 +23,9 @@ class PrzegladSerializer(serializers.ModelSerializer):
         fields = [
             'Data_poczatku_przegladu', 
             'Data_konca_przegladu', 
-            'auto_id_auta'
+            'auto_id_auta',
+            'url'
+            
         ]
         depth = 1
 
@@ -26,19 +38,33 @@ class UbezpieczenieSerializer(serializers.ModelSerializer):
             'Data_poczatku_ubezpieczenia',
             'numer_ubezpieczenia',
             'Ubezpieczyciel',
-            'cena_ubezpieczenia'
+            'cena_ubezpieczenia',
+            
         ]
         depth = 1
 
 class KlientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Klient
-        fields = '__all__'
+        fields = [
+            'Imie',
+            'Nazwisko',
+            'PESEL',
+            'numer_dowodu_osobistego',
+            'Miejscowosc',
+            'Ulica',
+            'Numer_domu',
+            'Numer_mieszkania',
+            'url'
+        ]
 
 class CennikSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cennik
-        fields = '__all__'
+        fields = [
+            'Cena_za_dobe',
+            'url'
+        ]
 
 class WypozyczeniaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,9 +74,11 @@ class WypozyczeniaSerializer(serializers.ModelSerializer):
             'auto_id_auta',
             'data_wypozyczenia',
             'termin_zwrotu_zwrotu',
-            'cennik_id_cennika'
+            'cennik_id_cennika',
+            'url'
         ]
         depth = 1
+        
 
 class ZwrotySerialiser(serializers.ModelSerializer):
     class Meta:
@@ -58,7 +86,8 @@ class ZwrotySerialiser(serializers.ModelSerializer):
         fields = [
             'wypozyczenia_id_wypozyczenia',
             'stan_licznika_po',
-            'data_zwrotu'
+            'data_zwrotu',
+            'url'
         ]
         depth = 1
 
