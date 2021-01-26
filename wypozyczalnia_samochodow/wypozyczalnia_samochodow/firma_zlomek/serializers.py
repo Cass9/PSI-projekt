@@ -18,6 +18,7 @@ class AutoSerializer(serializers.ModelSerializer):
         
 
 class PrzegladSerializer(serializers.ModelSerializer):
+    auto_id_auta = serializers.SlugRelatedField(queryset=Auto.objects.all(), slug_field='Model')
     class Meta:
         model = Przeglad
         fields = [
@@ -27,9 +28,10 @@ class PrzegladSerializer(serializers.ModelSerializer):
             'url'
             
         ]
-        depth = 1
+        
 
 class UbezpieczenieSerializer(serializers.ModelSerializer):
+    auto_id_auta = serializers.SlugRelatedField(queryset=Auto.objects.all(), slug_field='Model')
     class Meta:
         model = Ubezpieczenie
         fields = [
@@ -41,7 +43,7 @@ class UbezpieczenieSerializer(serializers.ModelSerializer):
             'cena_ubezpieczenia',
             
         ]
-        depth = 1
+        
 
 class KlientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -67,6 +69,9 @@ class CennikSerializer(serializers.ModelSerializer):
         ]
 
 class WypozyczeniaSerializer(serializers.ModelSerializer):
+    klient_id_klienta = serializers.SlugRelatedField(queryset=Klient.objects.all(), slug_field='Imie')
+    auto_id_auta = serializers.SlugRelatedField(queryset=Auto.objects.all(), slug_field='Model')
+    cennik_id_cennika = serializers.SlugRelatedField(queryset=Cennik.objects.all(), slug_field='Cena_za_dobe')
     class Meta:
         model = Wypozyczenia
         fields = [
@@ -77,10 +82,11 @@ class WypozyczeniaSerializer(serializers.ModelSerializer):
             'cennik_id_cennika',
             'url'
         ]
-        depth = 1
+        
         
 
 class ZwrotySerialiser(serializers.ModelSerializer):
+    wypozyczenia_id_wypozyczenia = serializers.SlugRelatedField(queryset=Wypozyczenia.objects.all(), slug_field='data_wypozyczenia')
     class Meta:
         model = Zwroty
         fields = [
@@ -89,6 +95,6 @@ class ZwrotySerialiser(serializers.ModelSerializer):
             'data_zwrotu',
             'url'
         ]
-        depth = 1
+        
 
 
