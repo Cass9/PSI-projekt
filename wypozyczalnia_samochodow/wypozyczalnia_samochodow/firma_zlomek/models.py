@@ -9,7 +9,8 @@ class Auto(models.Model):
     numer_rejestracyjny = models.CharField(max_length=75, null=False)
     moc_silnika = models.CharField(max_length=15, null=True)
     przebieg = models.FloatField(max_length=9, null=False)
-    
+    wlasciciel = models.ForeignKey('auth.User', related_name='wlasciciele', on_delete=models.CASCADE)
+
     class Meta:
         ordering = ('Marka',)
 

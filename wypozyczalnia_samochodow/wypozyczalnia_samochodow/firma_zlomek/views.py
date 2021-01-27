@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser
+from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser, UserSerializer
 from rest_framework import generics
 from rest_framework.reverse import reverse
 from .models import Auto, Klient, Przeglad, Ubezpieczenie, Cennik, Wypozyczenia, Zwroty
 from rest_framework.response import Response
 from django_filters import AllValuesFilter, FilterSet, NumberFilter, DateTimeFilter
+from rest_framework import permissions
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -18,12 +20,15 @@ class AutoList(generics.ListCreateAPIView):
     filter_fields = ['Marka', 'Model', 'Rok_produkcji', 'moc_silnika']
     search_fields = ['Marka', 'Model']
     name = 'auto-list'
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def perform_create(self, serializer):
+        serializer.save(wlasciciel=self.request.user)
 
-class AutoDetail(generics.RetrieveDestroyAPIView):
+class AutoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Auto.objects.all()
     serializer_class = AutoSerializer
     name = 'auto-detail'
-
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class ApiRoot(generics.GenericAPIView):
     name = 'api-root'
@@ -34,7 +39,8 @@ class ApiRoot(generics.GenericAPIView):
                          'ubezpieczenie':reverse(UbezpieczenieList.name, request=request),
                          'cennik': reverse(CennikList.name, request=request),
                          'wypozyczenia': reverse(WypozyczeniaList.name, request=request),
-                         'zwroty':reverse(ZwrotyList.name, request=request)
+                         'zwroty':reverse(ZwrotyList.name, request=request),
+                        # 'uzytkownicy': reverse(UserList.name, request=request)
                          })
        
 
@@ -46,11 +52,15 @@ class KlientList(generics.ListCreateAPIView):
     search_fields = ['Imie', 'Nazwisko', 'Miejscowosc']
     ordering_fields = ['Imie', 'Nazwisko', 'Miejscowosc']
     name = 'klient-list'
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def perform_create(self, serializer):
+        serializer.save(wlasciciel=self.request.user)
 
-class KlientDetail(generics.RetrieveDestroyAPIView):
+class KlientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Klient.objects.all()
     serializer_class = KlientSerializer
     name = 'klient-detail'
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class PrzegladFilter(FilterSet):
     od_data_konca_przegladu = DateTimeFilter(field_name='Data_konca_przegladu', lookup_expr='gte')
@@ -147,3 +157,13 @@ class ZwrotyDetail(generics.RetrieveDestroyAPIView):
     queryset = Zwroty.objects.all()
     serializer_class = ZwrotySerialiser
     name = 'zwroty-detail'    
+
+#class UserList(generics.ListAPIView):
+#        queryset = User.objects.all()
+#        serializer_class = UserSerializer
+#        name = 'user-list'
+
+#class UserDetail(generics.RetrieveAPIView):
+#        queryset = User.objects.all()
+#        serializer_class = UserSerializer
+#        name = 'user-detail'        

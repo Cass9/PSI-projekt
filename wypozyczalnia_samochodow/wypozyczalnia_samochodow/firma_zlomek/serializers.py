@@ -2,7 +2,10 @@ from rest_framework import serializers
 
 from .models import Auto, Przeglad, Ubezpieczenie, Klient, Cennik, Wypozyczenia, Zwroty
 
+from django.contrib.auth.models import User
+
 class AutoSerializer(serializers.ModelSerializer):
+    wlasciciel = serializers.ReadOnlyField(source='wlasciciel.username')
     class Meta:
         model = Auto
         fields = [    
@@ -12,13 +15,15 @@ class AutoSerializer(serializers.ModelSerializer):
             'numer_rejestracyjny',
             'moc_silnika',
             'przebieg',
-            'url'
+            'url',
+            'wlasciciel'
         ]
       
         
 
 class PrzegladSerializer(serializers.ModelSerializer):
     auto_id_auta = serializers.SlugRelatedField(queryset=Auto.objects.all(), slug_field='Model')
+    
     class Meta:
         model = Przeglad
         fields = [
@@ -26,7 +31,7 @@ class PrzegladSerializer(serializers.ModelSerializer):
             'Data_konca_przegladu', 
             'auto_id_auta',
             'url'
-            
+            'wlasciciel'
         ]
         
 
@@ -96,5 +101,13 @@ class ZwrotySerialiser(serializers.ModelSerializer):
             'url'
         ]
         
+class UserAutoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+    #    model = Auto
+        fields = ['url','Marka','Model']
 
-
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    auto = UserAutoSerializer(many=True, read_only = True)
+    class Meta:
+        model = User
+        fields = ['url','username','auto']
