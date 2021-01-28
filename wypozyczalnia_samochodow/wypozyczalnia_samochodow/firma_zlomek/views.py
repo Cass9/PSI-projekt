@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser, UserSerializer
+from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser, UserSerializer, UserAutoSerializer
 from rest_framework import generics
 from rest_framework.reverse import reverse
 from .models import Auto, Klient, Przeglad, Ubezpieczenie, Cennik, Wypozyczenia, Zwroty
@@ -52,15 +52,13 @@ class KlientList(generics.ListCreateAPIView):
     search_fields = ['Imie', 'Nazwisko', 'Miejscowosc']
     ordering_fields = ['Imie', 'Nazwisko', 'Miejscowosc']
     name = 'klient-list'
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    def perform_create(self, serializer):
-        serializer.save(wlasciciel=self.request.user)
+
 
 class KlientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Klient.objects.all()
     serializer_class = KlientSerializer
     name = 'klient-detail'
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 class PrzegladFilter(FilterSet):
     od_data_konca_przegladu = DateTimeFilter(field_name='Data_konca_przegladu', lookup_expr='gte')

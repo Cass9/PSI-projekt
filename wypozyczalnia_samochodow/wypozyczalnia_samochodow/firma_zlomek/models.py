@@ -49,12 +49,12 @@ class Klient(models.Model):
     Imie = models.CharField(max_length=75, null=False)
     Nazwisko = models.CharField(max_length=75, null=False)
     PESEL = models.FloatField(max_length=11, null=False)
-    numer_dowodu_osobistego = models.FloatField(max_length=8, null=False)
+    numer_dowodu_osobistego = models.CharField(max_length=8, null=False)
     Miejscowosc = models.CharField(max_length=75, null=False)
     Ulica = models.CharField(max_length=75, null=True)
     Numer_domu = models.FloatField(max_length=3, null=True)
     Numer_mieszkania = models.FloatField(max_length=3, null=True)
-
+    
     class Meta:
         ordering = ('Imie',)
 

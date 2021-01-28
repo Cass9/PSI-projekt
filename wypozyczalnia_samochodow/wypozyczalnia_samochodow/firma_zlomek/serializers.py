@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Auto, Przeglad, Ubezpieczenie, Klient, Cennik, Wypozyczenia, Zwroty
+from .models import Auto, Przeglad, Ubezpieczenie, Klient, Cennik, Wypozyczenia, Zwroty 
 
 from django.contrib.auth.models import User
 
@@ -31,7 +31,7 @@ class PrzegladSerializer(serializers.ModelSerializer):
             'Data_konca_przegladu', 
             'auto_id_auta',
             'url'
-            'wlasciciel'
+            
         ]
         
 
@@ -51,6 +51,7 @@ class UbezpieczenieSerializer(serializers.ModelSerializer):
         
 
 class KlientSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Klient
         fields = [
@@ -63,6 +64,7 @@ class KlientSerializer(serializers.ModelSerializer):
             'Numer_domu',
             'Numer_mieszkania',
             'url'
+            
         ]
 
 class CennikSerializer(serializers.ModelSerializer):
