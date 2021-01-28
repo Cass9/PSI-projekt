@@ -106,10 +106,11 @@ class ZwrotySerialiser(serializers.ModelSerializer):
 class UserAutoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Auto
-        fields = ['url','Marka','Model']
+        fields = ['Marka']
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    auto = UserAutoSerializer(many=True, read_only = True)
+    auto = serializers.HyperlinkedRelatedField(many=True, read_only = True, view_name='auto-detail')
     class Meta:
         model = User
         fields = ['url','username','auto']

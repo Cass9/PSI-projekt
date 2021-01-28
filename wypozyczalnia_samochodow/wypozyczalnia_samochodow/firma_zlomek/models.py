@@ -9,7 +9,7 @@ class Auto(models.Model):
     numer_rejestracyjny = models.CharField(max_length=75, null=False)
     moc_silnika = models.CharField(max_length=15, null=True)
     przebieg = models.FloatField(max_length=9, null=False)
-    wlasciciel = models.ForeignKey('auth.User', related_name='wlasciciele', on_delete=models.CASCADE)
+    wlasciciel = models.ForeignKey('auth.User', related_name='auto', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('Marka',)
@@ -49,12 +49,12 @@ class Klient(models.Model):
     Imie = models.CharField(max_length=75, null=False)
     Nazwisko = models.CharField(max_length=75, null=False)
     PESEL = models.FloatField(max_length=11, null=False)
-    numer_dowodu_osobistego = models.CharField(max_length=8, null=False)
+    numer_dowodu_osobistego = models.FloatField(max_length=8, null=False)
     Miejscowosc = models.CharField(max_length=75, null=False)
     Ulica = models.CharField(max_length=75, null=True)
     Numer_domu = models.FloatField(max_length=3, null=True)
     Numer_mieszkania = models.FloatField(max_length=3, null=True)
-    
+
     class Meta:
         ordering = ('Imie',)
 

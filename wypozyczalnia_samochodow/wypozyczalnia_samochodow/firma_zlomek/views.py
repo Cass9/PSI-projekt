@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser, UserSerializer, UserAutoSerializer
+from .serializers import AutoSerializer, KlientSerializer, PrzegladSerializer, UbezpieczenieSerializer, CennikSerializer, WypozyczeniaSerializer, ZwrotySerialiser, UserSerializer
 from rest_framework import generics
 from rest_framework.reverse import reverse
 from .models import Auto, Klient, Przeglad, Ubezpieczenie, Cennik, Wypozyczenia, Zwroty
