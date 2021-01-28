@@ -18,6 +18,6 @@ urlpatterns = [
     path('zwroty', views.ZwrotyList.as_view(),name=views.ZwrotyList.name),
     path('zwroty/<int:pk>', views.ZwrotyDetail.as_view(),name=views.ZwrotyDetail.name),
     #path('users', views.UserList.as_view(), name=views.UserList.name),
-    #path('users/<int: pk>', views.UserDetail.as_view(), name=views.UserDetail.name),
+    #path('users/<int:pk>', views.UserDetail.as_view(), name=views.UserDetail.name),
     path('', views.ApiRoot.as_view(), name=views.ApiRoot.name),
 ]

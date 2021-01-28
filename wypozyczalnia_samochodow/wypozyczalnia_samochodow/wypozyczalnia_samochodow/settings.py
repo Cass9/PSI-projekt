@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'firma_zlomek',
+    'firma_zlomek.apps.FirmaZlomekConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -133,9 +133,9 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter',
         'rest_framework.filters.SearchFilter',
-    )
-    'DEFAULT_AUTHENTICATION_CLASSES':{
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    },
+    )
 }

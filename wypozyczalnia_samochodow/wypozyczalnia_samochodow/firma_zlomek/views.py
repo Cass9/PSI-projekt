@@ -158,12 +158,12 @@ class ZwrotyDetail(generics.RetrieveDestroyAPIView):
     serializer_class = ZwrotySerialiser
     name = 'zwroty-detail'    
 
-#class UserList(generics.ListAPIView):
-#        queryset = User.objects.all()
-#        serializer_class = UserSerializer
-#        name = 'user-list'
+class UserList(generics.ListAPIView):
+        queryset = User.objects.all()
+        serializer_class = UserSerializer
+        name = 'user-list'
 
-#class UserDetail(generics.RetrieveAPIView):
-#        queryset = User.objects.all()
-#        serializer_class = UserSerializer
-#        name = 'user-detail'        
+class UserDetail(generics.RetrieveAPIView):
+        queryset = User.objects.all()
+        serializer_class = UserSerializer
+        name = 'user-detail'        

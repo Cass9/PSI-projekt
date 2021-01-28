@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "D:\\venv\\Scripts\\python.exe"
+    "python.pythonPath": "D:\\venv\\Scripts\\python.exe",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django",
+        "--errors-only",
+        "--load-plugins pylint_django"
+    ]
 }
