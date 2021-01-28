@@ -40,7 +40,7 @@ class ApiRoot(generics.GenericAPIView):
                          'cennik': reverse(CennikList.name, request=request),
                          'wypozyczenia': reverse(WypozyczeniaList.name, request=request),
                          'zwroty':reverse(ZwrotyList.name, request=request),
-                        # 'uzytkownicy': reverse(UserList.name, request=request)
+                         'uzytkownicy': reverse(UserList.name, request=request)
                          })
        
 

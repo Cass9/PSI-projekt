@@ -103,7 +103,7 @@ class ZwrotySerialiser(serializers.ModelSerializer):
         
 class UserAutoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-    #    model = Auto
+        model = Auto
         fields = ['url','Marka','Model']
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
