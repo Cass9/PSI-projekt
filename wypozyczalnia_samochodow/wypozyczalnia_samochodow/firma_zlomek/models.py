@@ -3,13 +3,13 @@ from django.db import models
 # Create your models here.
 
 class Auto(models.Model):
-    Marka= models.CharField(max_length=75, null=False)
-    Model= models.CharField(max_length=75, null=False)
-    Rok_produkcji= models.DateField()
+    Marka= models.CharField(max_length=75, null=True)
+    Model= models.CharField(max_length=75, null=True)
+    Rok_produkcji= models.DateField(null=True)
     numer_rejestracyjny = models.CharField(max_length=75, null=False)
     moc_silnika = models.CharField(max_length=15, null=True)
-    przebieg = models.FloatField(max_length=9, null=False)
-    wlasciciel = models.ForeignKey('auth.User', related_name='auto', on_delete=models.CASCADE)
+    przebieg = models.FloatField(max_length=9, null=True)
+    wlasciciel = models.ForeignKey('auth.User', related_name='auto', on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ('Marka',)
