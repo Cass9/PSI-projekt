@@ -19,6 +19,6 @@ class AutoTests(APITestCase):
         response = self.post_Auto(nowa_marka)
         assert response.status_code == status.HTTP_201_CREATED
         assert Auto.objects.count() == 1
-        assert Auto.objects.get().name == nowa_marka   
+         assert Auto.objects.get().name == nowa_marka   
 
 class 
