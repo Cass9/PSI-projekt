@@ -17,7 +17,7 @@ class AutoTests(APITestCase):
     def test_post_and_get_auto(self):
         nowa_marka = 'Bugatti'
         response = self.post_Auto(nowa_marka)
-        assert response.status_code == status.HTTP_201_CREATED
+        assert response.status_code == status.HTTP_401_CREATED
         assert Auto.objects.count() == 1
         assert Auto.objects.get().nowa_marka == nowa_marka   
 
@@ -35,8 +35,8 @@ class KlienTest(APITestCase):
         nowy_numer_dowodu_osobistego='CDF2019232'
         nowa_miejscowosc='Bielawa'
         response = self.post_Klient(nowe_imie, nowe_nazwisko, nowy_PESEL, nowy_numer_dowodu_osobistego, nowa_miejscowosc)
-        assert response.status_code == status.HTTP_201_CREATED
-        assert Klient.objects.count() == 2
+        assert response.status_code == status.HTTP_401_CREATED
+        assert Klient.objects.count() == 1
         assert Klient.objects.get().imie == nowe_imie
         assert Klient.objects.get().nazwisko == nowe_nazwisko
         assert Klient.objects.get().PESEL == nowy_PESEL
