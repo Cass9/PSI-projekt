@@ -100,7 +100,7 @@ class ZwrotySerialiser(serializers.ModelSerializer):
             'wypozyczenia_id_wypozyczenia',
             'stan_licznika_po',
             'data_zwrotu',
-            'url'
+            'url',
         ]
         
 class UserAutoSerializer(serializers.HyperlinkedModelSerializer):
