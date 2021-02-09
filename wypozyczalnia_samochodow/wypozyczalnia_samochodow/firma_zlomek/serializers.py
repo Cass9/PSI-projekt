@@ -89,9 +89,7 @@ class WypozyczeniaSerializer(serializers.ModelSerializer):
             'cennik_id_cennika',
             'url'
         ]
-        
-        #test23
-        #tes333
+    
 
 class ZwrotySerialiser(serializers.ModelSerializer):
     wypozyczenia_id_wypozyczenia = serializers.SlugRelatedField(queryset=Wypozyczenia.objects.all(), slug_field='data_wypozyczenia')
