@@ -89,8 +89,7 @@ class WypozyczeniaSerializer(serializers.ModelSerializer):
             'cennik_id_cennika',
             'url'
         ]
-        
-        
+    
 
 class ZwrotySerialiser(serializers.ModelSerializer):
     wypozyczenia_id_wypozyczenia = serializers.SlugRelatedField(queryset=Wypozyczenia.objects.all(), slug_field='data_wypozyczenia')
@@ -100,7 +99,7 @@ class ZwrotySerialiser(serializers.ModelSerializer):
             'wypozyczenia_id_wypozyczenia',
             'stan_licznika_po',
             'data_zwrotu',
-            'url'
+            'url',
         ]
         
 class UserAutoSerializer(serializers.HyperlinkedModelSerializer):
