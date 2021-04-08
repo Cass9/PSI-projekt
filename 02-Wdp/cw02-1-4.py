@@ -47,3 +47,5 @@ def przeliczanie(temp, temp_type):
 
 przeliczanie(20, "fahrenheit")
 
+#test
+
